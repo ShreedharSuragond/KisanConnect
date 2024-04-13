@@ -1,0 +1,158 @@
+<div *ngIf="showAddProductPage" class="container">
+  <h2 class="add-product-heading">Product Details</h2>
+  <form (ngSubmit)="submitForm()" #productForm="ngForm" action="#" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="productId" class="form-label">Product SLNo:</label>
+      <input type="text" class="form-control" id="productId" name="productId" [(ngModel)]="product.id" required>
+    </div>
+    <div class="mb-3">
+      <label for="productName" class="form-label">Product Name:</label>
+      <input type="text" class="form-control" id="productName" name="productName" [(ngModel)]="product.name" required>
+    </div>
+    <div class="mb-3">
+      <label for="productCompany" class="form-label">Product Company:</label>
+      <input type="text" class="form-control" id="productCompany" name="productCompany" [(ngModel)]="product.company"
+        required>
+    </div>
+    <div class="mb-3">
+      <label for="volume" class="form-label">Volume Variants:</label>
+      <div *ngFor="let variant of product.productVariants; let i = index" class="row mb-2 variant-row">
+        <div class="col-4">
+          <label *ngIf="i===0" class="form-label">Volume</label>
+          <input type="text" class="form-control" [(ngModel)]="variant.variant" name="volumeVariants{{i}}"
+            placeholder="Volume">
+        </div>
+        <div class="col-2">
+          <label *ngIf="i===0" class="form-label">Quantity</label>
+          <input type="number" class="form-control" [(ngModel)]="variant.quantity" name="volumeQuantity{{i}}"
+            placeholder="Quantity">
+        </div>
+        <div class="col-2">
+          <label *ngIf="i===0" class="form-label">Price</label>
+          <input type="number" class="form-control" [(ngModel)]="variant.price" name="volumePrice{{i}}"
+            placeholder="Price">
+        </div>
+        <div class="col-2">
+          <label *ngIf="i===0" class="form-label">Discount(%)</label>
+          <input type="number" class="form-control" [(ngModel)]="variant.discount" name="volumeDiscount{{i}}"
+            placeholder="Discount (%)">
+        </div>
+        <div class="col-2 removeVariant">
+          <button type="button" class="btn btn-danger" (click)="removeVolumeVariant(i)">Remove</button>
+        </div>
+      </div>
+      <button type="button" class="btn volume-btn" (click)="addVolumeVariant()">Add Variant</button>
+    </div>
+    <div class="mb-3">
+      <label for="productPicture" class="form-label">Product Picture: </label>
+      <input type="file" class="form-control-file" id="productPicture" name="productPicture" accept="image/*"
+        [(ngModel)]="product.image" required capture="camera">
+    </div>
+    <div class="mb-3">
+      <label for="technicalContent" class="form-label">Content:</label>
+      <input type="text" class="form-control" id="technicalContent" name="technicalContent"
+        [(ngModel)]="product.content" required>
+    </div>
+    <div class="mb-3">
+      <label for="features" class="form-label">Features:</label>
+      <input type="text" class="form-control" id="features" name="features" [(ngModel)]="newFeature"
+        (keyup.enter)="addFeature()">
+      <button type="button" class="btn feature-btn" (click)="addFeature()">Add Feature</button>
+      <ul>
+        <li *ngFor="let feature of product.features">{{ feature }}</li>
+      </ul>
+    </div>
+    <div class="mb-3">
+      <label for="usage" class="form-label">Usage:</label>
+      <input type="text" class="form-control" id="usage" name="usage" [(ngModel)]="product.usage" required>
+    </div>
+    <div class="mb-3">
+      <label for="crops" class="form-label">Crops to Use:</label>
+      <input type="text" class="form-control" id="crops" name="crops" [(ngModel)]="product.crops" required>
+    </div>
+    <div class="mb-3">
+      <label for="timeOfApplication" class="form-label">Time of Application:</label>
+      <input type="text" class="form-control" id="timeOfApplication" name="timeOfApplication"
+        [(ngModel)]="product.timeOfApplication" required>
+    </div>
+    <div class="mb-3">
+      <label for="dosage" class="form-label">Dosage:</label>
+      <input type="text" class="form-control" id="dosage" name="dosage" [(ngModel)]="product.dosage" required>
+    </div>
+
+    <button type="submit" class="btn btn-success float-end">Submit</button>
+    <button (click)="AddProductPage()" class="btn btn-danger float-start">Cancel</button>
+  </form>
+</div>
+
+<div *ngIf="!showAddProductPage" class="container-lg">
+  <table id="example" class="table-sm mx-auto table-bordered text-center" style="width: 100%">
+    <thead>
+      <tr>
+        <th id="product">Select</th>
+        <th id="product">Product ID</th>
+        <th id="product">Product Name</th>
+        <th id="product">Company</th>
+        <th id="product">Content</th>
+        <th id="product">Features</th>
+        <th id="product">Usage</th>
+        <th id="product">Crops</th>
+        <th id="product">Time of Application</th>
+        <th id="product">Dosage</th>
+        <th id="product">Product Variant</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productDetails">
+        <td id="product">
+          <input type="checkbox" (change)="toggleProductSelection(+product.id)" [checked]="isProductSelected(+product.id)">
+        </td>
+        <td id="product">{{ product.id }}</td>
+        <td id="product">{{ product.name }}</td>
+        <td id="product">{{ product.company }}</td>
+        <td id="product">{{ product.content }}</td>
+        <td id="product">
+          <ul id="">
+            <li *ngFor="let feature of product.features">{{ feature }}</li>
+          </ul>
+        </td>
+        <td id="product">{{ product.usage }}</td>
+        <td id="product">{{ product.crops }}</td>
+        <td id="product">{{ product.timeOfApplication }}</td>
+        <td id="product">{{ product.dosage }}</td>
+        <td (click)="VariantTable(+product.id)" id="product">
+            <span class="arrow">&#9662;</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="AddProductPage()" class="btn add-Product-Btn ">Add Product</button>
+  <button class="btn update-Product-Btn" (click)="updateSelectedProducts()" [disabled]="selectedProductIds.length === 0">Update Product</button>
+  <button class="btn delete-Product-Btn" (click)="deleteSelectedProducts()" [disabled]="selectedProductIds.length === 0">Delete Product</button>
+</div>
+
+
+<div *ngFor="let product of productDetails">
+  <div class="container-sm" *ngIf="displayVariantTable === +product.id">
+    <button class="btn close-Product-varient" (click)="VariantTable(+product.id)">close</button>
+  <h3 class="text-center pvarient" >Product Variant for {{ product.name }}</h3>
+  <table class="table-sm mx-auto my-3 text-center table-bordered"id="tablevariant{{product.id}}" style="width:100%;">
+    <thead>
+      <tr>
+        <th id="variant">Variant</th>
+        <th id="variant">Quantity</th>
+        <th id="variant">Price</th>
+        <th id="variant">Discount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let variant of product.productVariants">
+        <td id="variant">{{ variant.variant }}</td>
+        <td id="variant">{{ variant.quantity }}</td>
+        <td id="variant">{{ variant.price }}</td>
+        <td id="variant">{{ variant.discount }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

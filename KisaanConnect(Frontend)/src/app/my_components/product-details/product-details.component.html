@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, width=device-width" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+</head>
+
+<body>
+  <div class="frame-parent" *ngIf="productDetail">
+    <div class="frame-group">
+      <div class="frame-wrapper">
+        <div class="namdhari-label-parent">
+          <div class="namdhari-label">
+            <div class="namdhari-label-child"></div>
+            <div class="namdhari-label-item"></div>
+          </div>
+          <div class="price-tag">
+            <div class="price-tag-child" [style.background-image]="'url(' + backgroundImageUrl + ')'"></div>
+          </div>
+        </div>
+      </div>
+      <div class="star-rating-parent">
+        <div class="star-rating" (click)="changeBackgroundImage('../../../assets/images/flower1.jpeg')"><img
+            src="../../../assets/images/flower1.jpeg" alt=""></div>
+        <div class="star-rating1" (click)="changeBackgroundImage('../../../assets/images/flower2.jpeg')"><img
+            src="../../../assets/images/flower2.jpeg" alt=""></div>
+        <div class="star-rating2" (click)="changeBackgroundImage('../../../assets/images/flower3.jpeg')"><img
+            src="../../../assets/images/flower3.jpeg" alt=""></div>
+      </div>
+    </div>
+    <div class="buy-button">
+      <div class="namdhari-wrapper">
+        <div class="namdhari">
+          <p>{{ productDetail.company | uppercase }}</p>
+        </div>
+      </div>
+      <div class="frame-container">
+        <div class="component-wrapper">
+          <div class="surabhi-coriander-wrapper">
+            <h3 class="surabhi-coriander">{{ productDetail.name | uppercase}}</h3>
+          </div>
+        </div>
+        <div class="review-instance">
+          <div class="reviews-container">
+            <div class="frame-div">
+              <div class="add-to-cart-btn-parent">
+                <img class="add-to-cart-btn" loading="lazy" alt="" src="../../../assets/images/star.svg" />
+
+                <div class="image-shape-wrapper">
+                  <img class="image-shape-icon" loading="lazy" alt="" src="../../../assets/images/star.svg" />
+                </div>
+                <img class="add-to-cart-btn1" loading="lazy" alt="" src="../../../assets/images/star.svg" />
+
+                <img class="add-to-cart-btn2" loading="lazy" alt="" src="../../../assets/images/star.svg" />
+
+                <img class="add-to-cart-btn3" loading="lazy" alt="" src="../../../assets/images/star.svg" />
+              </div>
+              <button class="variants-list-wrapper">
+                <div class="variants-list">4.5</div>
+              </button>
+              <div class="instance-wrapper">
+                <div class="reviews-wrapper">
+                  <div class="reviews">40 reviews</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="image-container-wrapper">
+            <div class="image-container">
+              <div class="price-208-wrapper">
+                <div class="price-208">Price ₹{{ productDetail.productVariants[0]?.price }}</div>
+              </div>
+              <div class="image1-1-wrapper">
+                <img class="image1-1-icon" loading="lazy" alt="" src="../../../assets/images/coriander.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="variants">
+        <h3 class="variants-header">Variants</h3>
+        <div class="variant-container" *ngFor="let variant of productDetail.productVariants">
+          <div class="variant">{{ variant.variant }}</div>
+        </div>
+      </div>
+      <div class="button-pair">
+        <div class="component-parent">
+          <button class="buy-now-wrapper">
+            <div class="buy-now">Buy Now</div>
+          </button>
+          <button class="add-to-cart-btn4">
+            Add to cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

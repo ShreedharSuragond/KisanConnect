@@ -1,0 +1,30 @@
+
+<div class="log-div">
+    <div class="login-container">
+        <h2 class="text-center">Login</h2>
+
+        <form (ngSubmit)="loginUser()">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" required>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+
+            <div class="text-center mt-3">
+                <p>Don't have an account? <a routerLink="/register">Create Account</a></p>
+            </div>
+
+            <div class="text-center mt-3">
+                <p>Forgot Password? <a routerLink="/resetpassword">Reset Password</a></p>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    /> -->
+  </head>
+  <body>
+    <div class="desktop-1">
+      <div *ngFor="let product of productDetails" (click)="navigateToProdetail(product.id)" class="frame-parent">
+        <div class="frame-child"> image</div>
+        <div class="frame-wrapper">
+          <div class="frame-group">
+            <div class="product-name-parent">
+              <div class="product-name">{{ product.name }}</div>
+              <div class="company-name-parent">
+                <div class="company-name">{{ product.company }}</div>
+                <div class="price-wrapper">
+                  <h3 class="price">₹{{ product.productVariants[0]?.price }}</h3>
+                </div>
+              </div>
+            </div>
+            <div class="additional-components">
+              <div class="size-label-parent">
+                <div class="size-label">
+                  <div class="size">Size:</div>
+                </div>
+                <div class="union-container-x">
+                  <div class="volume">{{ product.productVariants[0]?.variant }}</div>
+                  <div class="spacer">
+                    <span class="arrow">&#9662;</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

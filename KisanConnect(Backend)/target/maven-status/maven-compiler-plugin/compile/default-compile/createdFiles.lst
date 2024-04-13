@@ -1,0 +1,15 @@
+com\example\demo\controller\ResetPasswordController.class
+com\example\demo\model\RegisterLogin.class
+com\example\demo\model\ProductDetails.class
+com\example\demo\repository\RegisterLoginRepository.class
+com\example\demo\service\RegisterLoginService.class
+com\example\demo\repository\ProductVariantRepository.class
+com\example\demo\model\ProductVariant.class
+com\example\demo\KisanConnectApplication.class
+com\example\demo\service\ResetPasswordService.class
+com\example\demo\controller\ProductDetailsController.class
+com\example\demo\model\ResetPassword.class
+com\example\demo\repository\ProductDetailsRepository.class
+com\example\demo\controller\RegisterLoginController.class
+com\example\demo\service\ProductDetailService.class
+com\example\demo\service\ResetPasswordService$1.class
